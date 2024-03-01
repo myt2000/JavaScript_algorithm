@@ -10,6 +10,13 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+function TreeNode(val, left, right) {
+    this.val = (val === undefined ? 0 : val)
+    this.left = (left === undefined ? null : left)
+    this.right = (right === undefined ? null : right)
+}
+
 var minDepth = function (root) {
     if (!root) { return 0; }
 
@@ -47,10 +54,21 @@ function buildTree(nums) {
                 root = node;
             } else {
                 let parent = queue.shift();
-                if (!parent.left) {
-                    parent.left = node;
+                if (parent !== null) {
+                    if ((!parent.left || parent.left === null) && (!parent.right || parent.right === null)) {
+                        // 如果左右子节点都不存在或者为 null，则创建左子节点
+                        parent.left = node;
+                    } else if (parent.left && parent.left !== null) {
+                        // 左子节点已存在且不为 null，则创建右子节点
+                        parent.right = node;
+                    } else {
+                        // 此处应该无需额外处理，因为在上述条件中会直接创建左子节点，
+                        // 若此处还能执行到，理论上是不应该发生的。
+                        console.error('Invalid tree structure.');
+                    }
                 } else {
-                    parent.right = node;
+                    // 应该不会到达这里，因为前面有 !queue.length 的判断来初始化根节点
+                    console.error('Unexpected error. No parent node found.');
                 }
             }
             queue.push(node);
