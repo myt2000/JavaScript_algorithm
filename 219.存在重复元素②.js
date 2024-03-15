@@ -11,11 +11,12 @@ var containsNearbyDuplicate = function (nums, k) {
         if (map.has(nums[i]) && i - map.get(nums[i]) <= k) {
             return true;
         }
-        map.set(nums[i], i);
         // 移除窗口左侧超出范围的元素
         if (i >= windowSize) {
             map.delete(nums[i - windowSize]);
         }
+        map.set(nums[i], i);
+
     }
 
     return false;
