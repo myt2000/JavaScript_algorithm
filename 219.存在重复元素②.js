@@ -17,13 +17,14 @@ var containsNearbyDuplicate = function (nums, k) {
             map.delete(nums[i - windowSize]);
         }
     }
+
     return false;
 };
 
 // 测试用例
-// console.log(containsNearbyDuplicate([1, 2, 3, 1], 3)); // 输出：true
+console.log(containsNearbyDuplicate([1, 2, 3, 1], 3)); // 输出：true
 console.log(containsNearbyDuplicate([1, 0, 1, 1], 1)); // 输出：true
-// console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2)); // 输出：false
+console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2)); // 输出：false
 
 
 /**
