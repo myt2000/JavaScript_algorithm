@@ -8,34 +8,57 @@ class MyStack {
     push(x) {
         // 将元素添加到 queue1 的末尾
         this.queue1.push(x);
-        // 当 queue2 不为空或 queue1 中有多个元素时，将 queue1 中的元素移动到 queue2，并反转顺序
-        while (this.queue1.length > 1) {
-            if (this.queue1.length > 0) {
-                this.queue2.push(this.queue1.shift());
-            }
+
+        // 将 queue2 中的元素全部移动到 queue1，并保持 queue1 只有一个元素（栈顶元素）
+        while (this.queue2.length > 0) {
+            this.queue1.push(this.queue2.shift());
+        }
+        // 然后将 queue1 中多余的元素移回 queue2
+        for (let i = 1; i < this.queue1.length; i++) {
+            this.queue2.push(this.queue1.shift());
         }
     }
+
 
 
     pop() {
-        // 如果 queue1 为空，则将 queue2 中的元素全部移到 queue1，并返回并移除 queue1 的第一个元素（即栈顶元素）
         if (this.queue1.length === 0) {
-            while (this.queue2.length > 0) {
-                this.queue1.push(this.queue2.shift());
-            }
+            return null;
         }
-        return this.queue1.shift();
+        const top = this.queue1[0];
+        // 将 queue1 的剩余元素移到 queue2
+        while (this.queue1.length > 1) {
+            this.queue2.push(this.queue1.shift());
+        }
+        // 清空 queue1，此时 queue1 中只剩下一个元素（栈顶元素）
+        this.queue1.shift();
+        // 将 queue2 中的元素再反转回 queue1，准备下一次操作
+        while (this.queue2.length > 0) {
+            this.queue1.push(this.queue2.shift());
+        }
+        return top;
     }
 
     top() {
-        // 同 pop 方法，确保栈顶元素位于 queue1
         if (this.queue1.length === 0) {
-            while (this.queue2.length > 0) {
-                this.queue1.push(this.queue2.shift());
+            return null;
+        }
+        // 类似于 pop 方法，但在返回栈顶元素之后不将其从队列中移除
+        const top = this.queue1[0];
+        if (this.queue1.length > 1) {
+            let tempQueue = [];
+            // 将 queue1 的剩余元素移到临时队列
+            while (this.queue1.length > 1) {
+                tempQueue.push(this.queue1.shift());
+            }
+            // 将临时队列中的元素再反转回 queue1
+            while (tempQueue.length > 0) {
+                this.queue1.push(tempQueue.shift());
             }
         }
-        return this.queue1[0];
+        return top;
     }
+
 
     empty() {
         return this.queue1.length === 0 && this.queue2.length === 0;
@@ -69,6 +92,8 @@ class MyStack {
 let myStack = new MyStack();
 myStack.push(1);
 myStack.push(2);
-console.log(myStack.top()); // 输出：2
+myStack.push(3);
+console.log(myStack.pop()); // 输出：2
+console.log(myStack.pop()); // 输出：2
 console.log(myStack.pop()); // 输出：2
 console.log(myStack.empty()); // 输出：false
