@@ -47,24 +47,23 @@ var getHeight = function (node) {
 
 
 // 示例测试
-function buildCompleteBinaryTree(arr) {
+function buildBinaryTreeFromArray(arr) {
     if (arr.length === 0) return null;
 
     let root = new TreeNode(arr[0]);
 
-    function createLevel(root, startIndex) {
-        if (startIndex >= arr.length) return;
-
-        root.left = new TreeNode(arr[startIndex++]);
-        if (startIndex < arr.length) {
-            root.right = new TreeNode(arr[startIndex++]);
+    let i = 1;
+    function createLevel(node) {
+        if (i >= arr.length) return;
+        node.left = new TreeNode(arr[i++]);
+        if (i < arr.length) {
+            node.right = new TreeNode(arr[i++]);
         }
-
-        if (root.left) createLevel(root.left, startIndex);
-        if (root.right) createLevel(root.right, startIndex);
+        if (node.left) createLevel(node.left);
+        if (node.right) createLevel(node.right);
     }
 
-    createLevel(root, 1);
+    createLevel(root);
 
     return root;
 }
@@ -72,5 +71,5 @@ function buildCompleteBinaryTree(arr) {
 
 // 现在使用这个修复后的构建函数创建完全二叉树，并计算节点数
 let array = [1, 2, 3, 4, 5, 6]; // 注意：这个数组可以构造一棵完全二叉树
-let root = buildCompleteBinaryTree(array);
+let root = buildBinaryTreeFromArray(array);
 console.log(countNodes(root)); // 应输出：6
