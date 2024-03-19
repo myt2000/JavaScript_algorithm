@@ -1,69 +1,71 @@
 
+// class MyStack {
+//     constructor() {
+//         this.queue1 = [];
+//         this.queue2 = [];
+//     }
+
+//     // 将元素压入栈顶，即添加到 queue1 的末尾
+//     push(x) {
+//         this.queue1.push(x);
+//         // 确保 queue2 为空，然后将 queue1 中的所有元素（除了最后一个）移动到 queue2
+//         while (this.queue1.length > 1) {
+//             this.queue2.push(this.queue1.shift())
+//         }
+//     }
+
+//     // 移除并返回栈顶元素，即从 queue1 的开头移除元素
+//     pop() {
+//         // 如果 queue1 为空，则将 queue2 中的元素全部移到 queue1，并返回并移除 queue1 的第一个元素
+//         if (this.queue1.length === 0) {
+//             while (this.queue2.length > 0) {
+//                 this.queue1.push(this.queue2.pop());
+//             }
+//         }
+//         return this.queue1.shift();
+//     }
+
+//     // 返回栈顶元素，即查看 queue1 的第一个元素
+//     top() {
+//         // 同 pop 方法，确保栈顶元素位于 queue1
+//         if (this.queue1.length === 0) {
+//             while (this.queue2.length > 0) {
+//                 this.queue1.push(this.queue2.pop());
+//             }
+//         }
+//         return this.queue1[0];
+//     }
+
+//     // 判断栈是否为空
+//     empty() {
+//         return this.queue1.length === 0 && this.queue2.length === 0;
+//     }
+// }
+
 class MyStack {
     constructor() {
-        this.queue1 = [];
-        this.queue2 = [];
+        this.queue = [];
+
     }
 
     push(x) {
-        // 将元素添加到 queue1 的末尾
-        this.queue1.push(x);
-
-        // 将 queue2 中的元素全部移动到 queue1，并保持 queue1 只有一个元素（栈顶元素）
-        while (this.queue2.length > 0) {
-            this.queue1.push(this.queue2.shift());
-        }
-        // 然后将 queue1 中多余的元素移回 queue2
-        for (let i = 1; i < this.queue1.length; i++) {
-            this.queue2.push(this.queue1.shift());
-        }
+        return this.queue.push(x);
     }
 
-
-
     pop() {
-        if (this.queue1.length === 0) {
-            return null;
-        }
-        const top = this.queue1[0];
-        // 将 queue1 的剩余元素移到 queue2
-        while (this.queue1.length > 1) {
-            this.queue2.push(this.queue1.shift());
-        }
-        // 清空 queue1，此时 queue1 中只剩下一个元素（栈顶元素）
-        this.queue1.shift();
-        // 将 queue2 中的元素再反转回 queue1，准备下一次操作
-        while (this.queue2.length > 0) {
-            this.queue1.push(this.queue2.shift());
-        }
-        return top;
+        return this.queue.pop();
     }
 
     top() {
-        if (this.queue1.length === 0) {
-            return null;
-        }
-        // 类似于 pop 方法，但在返回栈顶元素之后不将其从队列中移除
-        const top = this.queue1[0];
-        if (this.queue1.length > 1) {
-            let tempQueue = [];
-            // 将 queue1 的剩余元素移到临时队列
-            while (this.queue1.length > 1) {
-                tempQueue.push(this.queue1.shift());
-            }
-            // 将临时队列中的元素再反转回 queue1
-            while (tempQueue.length > 0) {
-                this.queue1.push(tempQueue.shift());
-            }
-        }
-        return top;
+        return this.queue[this.queue.length - 1]
     }
-
-
     empty() {
-        return this.queue1.length === 0 && this.queue2.length === 0;
+        return this.queue.length === 0;
     }
 }
+
+// 下面的思路有问题，不是最优思路，完全不需要两个队列。 
+
 
 /**
  * 在使用两个队列 queue1 和 queue2 实现栈时，它们分别扮演不同的角色以模拟栈的后入先出（LIFO）特性。
@@ -92,8 +94,9 @@ class MyStack {
 let myStack = new MyStack();
 myStack.push(1);
 myStack.push(2);
-myStack.push(3);
+// myStack.push(3);
+
+console.log(myStack.top()); // 输出：3
 console.log(myStack.pop()); // 输出：2
-console.log(myStack.pop()); // 输出：2
-console.log(myStack.pop()); // 输出：2
+// console.log(myStack.pop()); // 输出：2
 console.log(myStack.empty()); // 输出：false
