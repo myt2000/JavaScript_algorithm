@@ -65,10 +65,8 @@ function buildTree(nums) {
 function printInOrder(root) {
     if (root === null) return;
     console.log(root.val);
-    if (root.left)
-        printInOrder(root.left);
-    if (root.right)
-        printInOrder(root.right);
+    printInOrder(root.right);
+    printInOrder(root.left);
 }
 
 
