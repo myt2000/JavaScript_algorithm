@@ -2,6 +2,8 @@
  * @param {number[]} nums
  * @return {string[]}
  */
+
+// 自己写的错误答案，最后的情况处理的有问题
 // var summaryRanges = function (nums) {
 //     let result = [];
 //     let start = nums[0];
