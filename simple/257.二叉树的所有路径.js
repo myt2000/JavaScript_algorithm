@@ -74,3 +74,20 @@ function buildTree(nums) {
     }
     return root;
 }
+
+// 最优解
+var binaryTreePathsBest = function (root) {
+    const res = [];
+    function preOrder(node, path) {
+        if (!node) return;
+        if (node && !node.left && !node.right) {
+            path.push(node.val);
+            res.push(path.join('->'))
+            return
+        }
+        preOrder(node.left, [...path, node.val])
+        preOrder(node.right, [...path, node.val])
+    }
+    preOrder(root, [])
+    return res
+};
