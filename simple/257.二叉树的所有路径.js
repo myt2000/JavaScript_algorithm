@@ -48,14 +48,17 @@ console.log(binaryTreePaths(root1)); // 输出：["1->2->5", "1->3"]
 
 function buildTree(nums) {
     if (!nums.length) return null;
+    // 创建根节点
     let root = new TreeNode(nums.shift());
-    let queue = [root];
+    let queue = [root]; // 最多有两个节点，左右节点
+    // 循环队列，直到队列为空或者数组为空
     while (queue.length && nums.length) {
         let node = queue.shift();
         if (nums.length) {
             const value = nums.shift();
             if (value) {
                 node.left = new TreeNode(value);
+                // 左节点放入queue
                 queue.push(node.left);
             }
         }
@@ -63,6 +66,7 @@ function buildTree(nums) {
             const value = nums.shift();
             if (value) {
                 node.right = new TreeNode(value);
+                // 右节点放入queue
                 queue.push(node.right);
             }
 
