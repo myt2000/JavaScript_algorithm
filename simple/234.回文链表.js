@@ -44,6 +44,8 @@
 //     return true;
 // };
 
+
+// 最优解
 var isPalindrome = function (head) {
     let slow = head
     let fast = head
