@@ -74,20 +74,27 @@ var summaryRanges = function (nums) {
     if (nums.length === 0) {
         return []
     }
+    // (a, b) 表示每次比较时传入的两个待比较元素。
+    // a - b 用于计算两个数之间的差值。在 JavaScript 中，如果 a - b 结果小于 0，则认为 a 应该排在 b 前面；若结果等于 0，则认为 a 和 b 相等，可以保持原有顺序或交换位置（具体取决于实现）；若结果大于 0，则认为 b 应该排在 a 前面。
     nums = nums.sort((a, b) => a - b)
     let result = []
     let temp = [nums[0]]
     for (let i = 1; i < nums.length; i++) {
+        // 如果临时列表相减为1, 则将当前数字添加到临时列表中
         if (Math.abs(temp[temp.length - 1] - nums[i]) === 1) {
             temp.push(nums[i])
+            // 否则将临时列表添加到结果列表中，并更新临时列表        
         } else {
             result.push(temp)
             temp = [nums[i]]
         }
     }
+    // 处理最后一个区间
     if (temp.length > 0) {
         result.push(temp)
     }
+    // 如果当前区间（即 arr）只有一个元素（arr.length === 1），那么直接将这个元素转换为字符串（通过加上空字符串 '' 来实现类型转换）并返回。
+    // 否则，如果区间包含多个元素，则返回形如 "起始值->结束值" 的字符串，这里使用了模板字符串 ${} 的方式来插入变量。
     return result.map(arr => arr.length === 1 ? arr[0] + '' : `${arr[0]}->${arr[arr.length - 1]}`)
 };
 // 示例测试
