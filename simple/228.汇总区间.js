@@ -69,7 +69,7 @@
 //     return result;
 // }
 
-
+// 最优解
 var summaryRanges = function (nums) {
     if (nums.length === 0) {
         return []
