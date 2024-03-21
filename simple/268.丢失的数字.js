@@ -18,4 +18,16 @@ console.log(missingNumber([0, 1])); // 输出：2
 console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 输出：8
 console.log(missingNumber([0])); // 输出：1
 
+// 最优解
+var missingNumberBest = function (nums) {
+    let sum = 0;
 
+    for (let i = 0; i <= nums.length; i++) {
+        sum += i;
+        if (i < nums.length) {
+            sum = sum - nums[i];
+        }
+    }
+
+    return sum;
+}
