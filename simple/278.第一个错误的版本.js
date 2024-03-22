@@ -12,6 +12,7 @@
  * @param {function} isBadVersion()
  * @return {function}
  */
+// 二分法
 var solution = function (isBadVersion) {
     /**
      * @param {integer} n Total versions
