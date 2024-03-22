@@ -2,15 +2,22 @@
  * @param {number[]} nums
  * @return {number}
  */
-var missingNumber = function (nums) {
-    let result = nums.length + 1;
-    let numbersArray = Array.from({ length: result }, (_, index) => index);
-    let numsSet = new Set(nums);
-    const differenceResult = numbersArray.filter(item => !numsSet.has(item));
-    return differenceResult[0];
-};
+// var missingNumber = function (nums) {
+//     let result = nums.length + 1;
+//     let numbersArray = Array.from({ length: result }, (_, index) => index);
+//     let numsSet = new Set(nums);
+//     const differenceResult = numbersArray.filter(item => !numsSet.has(item));
+//     return differenceResult[0];
+// };
 
-
+function missingNumber(nums) {
+    let missing = 0;
+    for (let i = 0; i <= nums.length; i++) {
+        missing ^= i;
+        missing ^= nums[i];
+    }
+    return missing;
+}
 
 // 示例测试
 console.log(missingNumber([3, 0, 1])); // 输出：2
@@ -31,3 +38,5 @@ var missingNumberBest = function (nums) {
 
     return sum;
 }
+
+
