@@ -38,7 +38,7 @@ function moveZeroes(nums) {
 
 // 示例
 let nums = [0, 1, 0, 3, 12];
-moveZeroes(nums);
+// moveZeroes(nums);
 console.log(nums); // 输出: [1, 3, 12, 0, 0]
 
 // 最优解
@@ -55,3 +55,7 @@ var moveZeroesBest = function (nums) {
         }
     }
 }
+
+
+moveZeroesBest(nums);
+console.log(nums); // 输出: [1, 3, 12, 0, 0]
