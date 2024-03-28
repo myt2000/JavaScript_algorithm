@@ -18,3 +18,14 @@ var countSegments = function (s) {
 
 // 示例用法
 console.log(countSegments("Hello, my name is John")); // 输出：5
+
+var countSegmentsBest = function (s) {
+    let wordCount = 0;
+    for (let i = 0; i < s.length; i++) {
+        if ((i === 0 || s[i - 1] === ' ') && s[i] !== ' ') {
+            wordCount++
+        }
+    }
+    return wordCount
+};
+
