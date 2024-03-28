@@ -2,10 +2,10 @@
  * @param {string} s
  * @return {number}
  */
-function countWords(str) {
+var countSegments = function (s) {
     // 使用正则表达式匹配单词（连续的不是空格的字符）
     const wordPattern = /[^\s]+/g;
-    const matches = str.match(wordPattern);
+    const matches = s.match(wordPattern);
 
     // 如果没有匹配到单词，返回0
     if (!matches) {
@@ -17,4 +17,4 @@ function countWords(str) {
 }
 
 // 示例用法
-console.log(countWords("Hello, my name is John")); // 输出：5
+console.log(countSegments("Hello, my name is John")); // 输出：5
