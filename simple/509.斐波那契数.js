@@ -2,6 +2,7 @@
  * @param {number} n
  * @return {number}
  */
+// 自己写的
 // var fib = function (n) {
 //     if (n === 1) return 1;
 //     if (n === 0) return 0;
