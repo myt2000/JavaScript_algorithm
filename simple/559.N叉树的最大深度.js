@@ -48,42 +48,31 @@ var maxDepth = function (root) {
     return depth;
 };
 
-// 数组构建成N叉树
+// 数组构建成N叉树，可以完整构造N叉树
 function buildTree(arr) {
     if (!arr || arr.length === 0) return null;
 
     let nodes = [];
     let index = 0;
     let nullNum = 0;
-    let flag = true;
-
+    let node;
     // 创建节点
-    let root = new Node(arr[index++]);
-    let node = root;
-    index++;
     while (index < arr.length) {
-        if (arr[index] !== null && flag) {
+        if (arr[index] !== null) {
             let childNode = new Node(arr[index]);
-            node.children.push(childNode);
+            if (nodes.length && nullNum) {
+                node = nodes[nullNum - 1];
+                node.children.push(childNode);
+            }
             nodes.push(childNode);
             index++;
         } else {
-            if (arr[index + 1] !== null) {
-                flag = false;
-            }
             nullNum++;
             index++;
         }
-        if (nodes.length && nullNum && !flag) {
-            node = nodes[nullNum - 1];
-            nodes = [];
-            nullNum = 0;
-            flag = true;
-        }
     }
-    return root
+    return nodes.shift()
 }
-
 
 // 示例1:
 // let array1 = [1, null, 3, 2, 4, null, 5, 6];
