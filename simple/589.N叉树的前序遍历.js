@@ -21,20 +21,20 @@ class Node {
     }
 }
 
-// var preorder = function (root) {
-//     let node;
-//     let res = [];
-//     if (!root) return res;
-//     let stack = [root];
+var preorder = function (root) {
+    let node;
+    let res = [];
+    if (!root) return res;
+    let stack = [root];
 
-//     while (stack.length > 0) {
-//         node = stack.pop();
-//         res.push(node.val)
-//         // 实际node节点children数组例如[3,2,4], 但是前序遍历是先访问左节点然后右节点，所以这里需要reverse一下，变为[4,2,3], 这样pop弹出的就是左边第一个节点
-//         stack = stack.concat(node.children.reverse());
-//     }
-//     return res;
-// };
+    while (stack.length > 0) {
+        node = stack.pop();
+        res.push(node.val)
+        // 实际node节点children数组例如[3,2,4], 但是前序遍历是先访问左节点然后右节点，所以这里需要reverse一下，变为[4,2,3], 这样pop弹出的就是左边第一个节点
+        stack = stack.concat(node.children.reverse());
+    }
+    return res;
+};
 
 
 // 数组构建成N叉树，可以完整构造N叉树
@@ -64,23 +64,23 @@ function buildTree(arr) {
 }
 
 // leetcode最优解
-var preorder = function (root) {
-    let res = [];
+// var preorder = function (root) {
+//     let res = [];
 
-    const dfs = function (root) {
-        if (root == null) {
-            return;
-        }
-        let head = root;
-        res.push(head.val);
-        for (child of head.children) {
-            dfs(child);
-        }
+//     const dfs = function (root) {
+//         if (root == null) {
+//             return;
+//         }
+//         let head = root;
+//         res.push(head.val);
+//         for (child of head.children) {
+//             dfs(child);
+//         }
 
-    }
-    dfs(root);
-    return res;
-};
+//     }
+//     dfs(root);
+//     return res;
+// };
 
 
 // 示例1
