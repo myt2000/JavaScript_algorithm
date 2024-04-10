@@ -33,3 +33,12 @@
 -- +---------+-----------+--------------+-----------+
 -- 解释：
 -- 我们有三部电影，它们的 id 是奇数:1、3 和 5。id = 3 的电影是 boring 的，所以我们不把它包括在答案中。
+SELECT
+    *
+FROM
+    cinema
+WHERE
+    id % 2 = 1
+    AND description != 'boring'
+ORDER BY
+    rating DESC;
