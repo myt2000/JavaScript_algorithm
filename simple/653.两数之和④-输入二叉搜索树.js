@@ -86,3 +86,18 @@ console.log(findTarget(root1, 9));
 let array2 = [5, 3, 6, 2, 4, null, 7];
 let root2 = buildTree(array2);
 console.log(findTarget(root2, 28));
+
+// leetcode最佳解法
+// 这段代码实现了一个高效的二分搜索树中寻找目标和的节点对的算法，
+// 利用哈希表（map）记录已访问节点的值，避免重复计算，
+// 同时利用二分搜索树的性质（左子节点小于父节点，右子节点大于父节点）剪枝，减少不必要的搜索。
+var findTargetBest = function (root, k) {
+    const map = {};
+    function recursion(node) {
+        if (!node) return false;
+        if (map[k - node.val]) return true;
+        map[node.val] = true;
+        return recursion(node.left) || recursion(node.right);
+    }
+    return recursion(root);
+};
