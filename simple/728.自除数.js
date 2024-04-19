@@ -47,7 +47,7 @@ var selfDividingNumbers = function (left, right) {
 console.log(selfDividingNumbers(1, 22))
 console.log(selfDividingNumbers(47, 85))
 
-// leetcode最优解
+// leetcode最优解, 跟上面的方法，少了数组的构建，直接以索引遍历即可
 var selfDividingNumbersBest = function (left, right) {
     function isSelfDivision(num) {
         let k = num
