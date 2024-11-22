@@ -18,7 +18,7 @@ console.log(entries);
 // 输出: [['a', 1], ['b', 2], ['c', 3]]
 */
 var mostCommonWord = function (paragraph, banned) {
-    // 将段落转换为小写，并使用正则表达式去除标点符号, words是个数组
+    // 将段落转换为小写，并使用正则表达式去除标点符号, words是个数组, match返回一个数组
     const words = paragraph.toLowerCase().match(/\w+/g);
 
     // 将禁用词转换为集合，以便快速查找
