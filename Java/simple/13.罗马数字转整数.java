@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Arrays;
 // 定义一个HashMap，然后判断当前字符是否小于下一个字符，如果是，就减去当前字符的值，否则加上当前字符的值
-class Solution {
+class Solution13 {
     Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
         put('I', 1);
         put('V', 5);
@@ -31,7 +31,7 @@ class Solution {
 
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution13 solution = new Solution13();
         int ans = solution.romanToInt("III");
         System.out.println(ans);
         ans = solution.romanToInt("IV");
