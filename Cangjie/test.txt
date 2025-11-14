@@ -1,0 +1,63 @@
+
+{
+  "request_id": "{{$timestamp}}",
+  "group_name": "test_group",
+  "settings": {
+    "ttl": 7200000,
+    "strategy": {
+        "ios": 2
+    }
+  },
+  "audience": {
+    "cid": [
+      "12aa480615236173ac29cfac7e2ad72d"
+    ]
+  },
+  "push_message": {
+    "notification": {
+      "title": "在线通知",
+      "body": "这是一条测试通知内容",
+      "click_type": "url",
+      "url": "https://www.getui.com",
+      "channel_id":"123456",
+      "channel_name":"test",
+      "channel_level":"4",
+      "ring_name": "test",
+      "payload": "playSound|https://public-filea.oss-cn-beijing.aliyuncs.com/2025/10/23/232fb370907642f4a6324df7b6533863.mp3"
+    }
+    // "transmission": "123456"
+  },
+  "push_channel": {
+    "ios": {
+        // "type": "notify",
+        "type": "liveactivity",
+        // "type": "notify",
+        "laid": "111234",
+        "aps": {
+            "alert": {
+                "title": "灵动岛通知",
+                "body": "测试结束通知"     // 这样手机会有震动，不会静默更新
+                // "body": ""     // 这样手机静默更新灵动岛
+            },
+            "timestamp": {{$timestamp}},
+            "content-available": 0,          // 0.普通消息 1.静默推送
+            "event": "start",
+            // "attributes-type": "MyWidgetAttributes",
+            // "attributes": {
+            //     "prograssState": 0
+            // },
+            // "dismissal-date": 1761907320,
+             "sound": "com.gexin.ios.silence",
+            "content-state": {
+                "prograssState": 1
+            }
+    
+        }
+        // "multimedia": [{
+        //     "url": "https://zhlstaticimg.oss-cn-beijing.aliyuncs.com/static/images/logo.png",
+        //     "type": 1,
+        //     "only_wifi": false
+        // }]
+    }
+  }
+}
