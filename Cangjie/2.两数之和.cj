@@ -1,22 +1,36 @@
-// 定义两数之和函数
-func twoSum(nums: Array<Int64>, target: Int64): Array<Int64> {
-    // 使用for-in遍历数组
-    for(i in 0..nums.size-1) {
-        for(j in i+1..nums.size-1) {
-            if(nums[i] + nums[j] == target) {
-                return [i, j]
+import std.collection.HashMap
+// 两数之和解法
+class Solution1 {
+    func twoSum(nums: Array<Int64>, target: Int64) {
+        // 定义一个HashMap(哈希表)， 键和值都是Int64类型
+        var map = HashMap<Int64, Int64>()
+        // 定义一个整数i, 用作循环变量， 表示当前遍历的数组下标
+        var i: Int64 = 0
+        while(i<nums.size) {
+            let x: Int64 = target - nums[i]
+            if(map.contains(x)) {
+                var a:Array<Int64> = [map[x], i]
+                return a
+            }else {
+                map.add(nums[i], i)
             }
+            i = i + 1
         }
+        var a:Array<Int64> = []
+        return a
     }
-    // 如果没有找到，返回空数组
-    return []
 }
 
 // 主函数
 main() {
-    // 示例调用
-    let nums: Array<Int64> = [2, 7, 11, 15]
-    let target: Int64 = 9
-    let result: Array<Int64> = twoSum(nums, target)
+    let nums1: Array<Int64> = [2, 7, 11, 15]
+    let target1: Int64 = 9
+    // 创建解决方案实例
+    let solution = Solution1()
+    // 调用两数之和方法
+    // println("查找两数之和为9的索引...")
+    let result =solution.twoSum(nums1, target1)
     println(result)
+
+    
 }
