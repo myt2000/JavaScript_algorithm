@@ -5,16 +5,15 @@ class Solution1 {
         // 定义一个HashMap(哈希表)， 键和值都是Int64类型
         var map = HashMap<Int64, Int64>()
         // 定义一个整数i, 用作循环变量， 表示当前遍历的数组下标
-        var i: Int64 = 0
-        while(i<nums.size) {
-            let x: Int64 = target - nums[i]
-            if(map.contains(x)) {
-                var a:Array<Int64> = [map[x], i]
+        for(i in 0..nums.size){
+            var diff = target - nums[i]
+            if (map.contains(diff)) {
+                var a:Array<Int64> = [map[diff], i]
                 return a
-            }else {
+            }
+            else {
                 map.add(nums[i], i)
             }
-            i = i + 1
         }
         var a:Array<Int64> = []
         return a
@@ -31,6 +30,5 @@ main() {
     // println("查找两数之和为9的索引...")
     let result =solution.twoSum(nums1, target1)
     println(result)
-
-    
 }
+
