@@ -1,17 +1,13 @@
 package Java.middle;
 
-
-
-//**
-//  * Definition for singly-linked list.
+// Definition for singly-linked list.
 class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
-
 
 class Solution2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -33,6 +29,18 @@ class Solution2 {
             }
         }
         return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+        ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+        Solution2 solution2 = new Solution2();
+        ListNode res = solution2.addTwoNumbers(l1, l2);
+        while (res != null) {
+            System.out.println(res.val);
+            res = res.next;
+        }
+        
     }
 }
 
